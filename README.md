@@ -8,14 +8,14 @@ Install with [skills](https://github.com/vercel-labs/skills):
 
 ```bash
 # This repo
-npx skills add mattiavalerio/agent-nestjs-skills
+npx skills add mattiavalerio/nest-skills
 
 # Alongside Matt Pocock's skills
 npx skills add mattpocock/skills
 
 # Globally, or for specific agents
-npx skills add mattiavalerio/agent-nestjs-skills --global
-npx skills add mattiavalerio/agent-nestjs-skills -a claude-code -a cursor
+npx skills add mattiavalerio/nest-skills --global
+npx skills add mattiavalerio/nest-skills -a claude-code -a cursor
 ```
 
 The skills are installed side by side with no conflicts: this repo only adds `nestjs-best-practices`.

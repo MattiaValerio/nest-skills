@@ -138,4 +138,4 @@ Each rule file contains:
 ## Full Compiled Document
 
 For the complete guide with all rules expanded in a single document, see
-[AGENTS.md in the repository](https://github.com/mattiavalerio/agent-nestjs-skills/blob/main/AGENTS.md).
+[AGENTS.md in the repository](https://github.com/mattiavalerio/nest-skills/blob/main/AGENTS.md).
