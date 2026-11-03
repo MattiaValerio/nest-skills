@@ -8,6 +8,30 @@
 
 Installable alongside other skill sets such as [mattpocock/skills](https://github.com/mattpocock/skills).
 
+## Installation
+
+Install with [skills](https://github.com/vercel-labs/skills):
+
+```bash
+# This repo
+npx skills add mattiavalerio/nest-skills
+
+# Globally (available in every project), or for specific agents
+npx skills add mattiavalerio/nest-skills --global
+npx skills add mattiavalerio/nest-skills -a claude-code -a cursor
+```
+
+To use it together with Matt Pocock's skills, install both. They do not conflict: this repo only adds `nestjs-best-practices`.
+
+```bash
+npx skills add mattpocock/skills
+npx skills add mattiavalerio/nest-skills
+```
+
+### Supported agents
+
+Claude Code, OpenCode, Codex, Cursor, Antigravity, Roo Code, and any other agent supported by [skills](https://github.com/vercel-labs/skills).
+
 ## What it covers
 
 | Category | Impact | Examples |
@@ -23,25 +47,17 @@ Installable alongside other skill sets such as [mattpocock/skills](https://githu
 | Microservices | MEDIUM | message/event patterns, health checks, queues |
 | DevOps | LOW-MEDIUM | ConfigModule, structured logging, graceful shutdown |
 
-## Installation
+The full compiled guide is in [AGENTS.md](AGENTS.md), and each rule lives in [`skills/nestjs-best-practices/rules/`](skills/nestjs-best-practices/rules).
 
-Install with [skills](https://github.com/vercel-labs/skills):
+## Usage
 
-```bash
-# This repo
-npx skills add mattiavalerio/nest-skills
+The skill loads on its own when the agent works on NestJS code. You can also ask for it directly:
 
-# Alongside Matt Pocock's skills
-npx skills add mattpocock/skills
+- "Add an orders module following the NestJS best practices."
+- "Review this controller against the nestjs-best-practices rules."
+- "Refactor this service to remove the circular dependency."
 
-# Globally, or for specific agents
-npx skills add mattiavalerio/nest-skills --global
-npx skills add mattiavalerio/nest-skills -a claude-code -a cursor
-```
-
-The skills are installed side by side with no conflicts: this repo only adds `nestjs-best-practices`.
-
-### Making other skills use it
+### Using it with other skills
 
 Agents pick skills from their descriptions. `nestjs-best-practices` is model-invoked and its description matches NestJS work, so it loads when you (or a workflow skill such as `tdd` or `code-review`) touch NestJS code. To make that explicit in a project, add this to the project's `AGENTS.md` or `CLAUDE.md`:
 
@@ -53,16 +69,7 @@ including while following another skill's workflow, also apply the
 `nestjs-best-practices` skill and read the rule files relevant to the change.
 ```
 
-### Supported Agents
-
-- Claude Code
-- OpenCode
-- Codex
-- Cursor
-- Antigravity
-- Roo Code
-
-## Structure
+## Repository structure
 
 - `skills/nestjs-best-practices/` - The installable skill (this is what `skills add` copies into your project)
   - `SKILL.md` - Skill entry point and quick reference
@@ -70,47 +77,32 @@ including while following another skill's workflow, also apply the
     - `_sections.md` - Section metadata (titles, impacts, descriptions)
     - `_template.md` - Template for creating new rules
     - `area-description.md` - Individual rule files
-- `scripts/` - Build scripts and utilities
+- `scripts/` - Build script that compiles the rules
 - `metadata.json` - Document metadata (version, organization, abstract)
-- __`AGENTS.md`__ - Compiled output (generated)
+- `AGENTS.md` - Compiled guide (generated, do not edit by hand)
 
-## Getting Started
+## Contributing
 
-1. Install dependencies:
-   ```bash
-   cd scripts && npm install
-   ```
-
-2. Build AGENTS.md from rules:
-   ```bash
-   npm run build
-   # or
-   ./scripts/build.sh
-   ```
-
-## Creating a New Rule
+### Creating a new rule
 
 1. Copy `skills/nestjs-best-practices/rules/_template.md` to `skills/nestjs-best-practices/rules/area-description.md`
-2. Choose the appropriate area prefix:
-   - `arch-` for Architecture (Section 1)
-   - `di-` for Dependency Injection (Section 2)
-   - `error-` for Error Handling (Section 3)
-   - `security-` for Security (Section 4)
-   - `perf-` for Performance (Section 5)
-   - `test-` for Testing (Section 6)
-   - `db-` for Database & ORM (Section 7)
-   - `api-` for API Design (Section 8)
-   - `micro-` for Microservices (Section 9)
-   - `devops-` for DevOps & Deployment (Section 10)
-3. Fill in the frontmatter and content
-4. Ensure you have clear examples with explanations
-5. Run the build script to regenerate AGENTS.md
+2. Choose the area prefix:
+   - `arch-` Architecture
+   - `di-` Dependency Injection
+   - `error-` Error Handling
+   - `security-` Security
+   - `perf-` Performance
+   - `test-` Testing
+   - `db-` Database & ORM
+   - `api-` API Design
+   - `micro-` Microservices
+   - `devops-` DevOps & Deployment
+3. Fill in the frontmatter and content, with clear incorrect and correct examples
+4. Regenerate `AGENTS.md` (see below)
 
-## Rule File Structure
+### Rule file structure
 
-Each rule file should follow this structure:
-
-```markdown
+````markdown
 ---
 title: Rule Title Here
 impact: MEDIUM
@@ -134,20 +126,17 @@ Brief explanation of the rule and why it matters.
 // Good code example
 ```
 
-Optional explanatory text after examples.
-
 Reference: [NestJS Documentation](https://docs.nestjs.com)
+````
 
+### Conventions
 
-## File Naming Convention
+- Files starting with `_` are special and excluded from the build
+- Rule files are named `area-description.md` (for example `arch-avoid-circular-deps.md`)
+- The section is inferred from the filename prefix
+- Rules are sorted alphabetically by title within each section, and IDs (1.1, 1.2, ...) are generated during the build
 
-- Files starting with `_` are special (excluded from build)
-- Rule files: `area-description.md` (e.g., `arch-avoid-circular-deps.md`)
-- Section is automatically inferred from filename prefix
-- Rules are sorted alphabetically by title within each section
-- IDs (e.g., 1.1, 1.2) are auto-generated during build
-
-## Impact Levels
+### Impact levels
 
 | Level | Description |
 |-------|-------------|
@@ -157,30 +146,20 @@ Reference: [NestJS Documentation](https://docs.nestjs.com)
 | MEDIUM | Moderate impact on code quality and best practices |
 | LOW-MEDIUM | Minor improvements for consistency and maintainability |
 
-## Scripts
+### Building
 
-- `npm run build` (in scripts/) - Compile rules into AGENTS.md
+```bash
+cd scripts && npm install
+npm run build   # or ./build.sh
+```
 
-## Contributing
-
-When adding or modifying rules:
-
-1. Use the correct filename prefix for your section
-2. Follow the `_template.md` structure
-3. Include clear bad/good examples with explanations
-4. Add appropriate tags
-5. Run the build script to regenerate AGENTS.md
-6. Rules are automatically sorted by title - no need to manage numbers!
+This compiles the rules into the root `AGENTS.md`.
 
 ## Acknowledgments
 
-- Inspired by the [Vercel React Best Practices](https://github.com/vercel-labs/agent-skills) skill structure
-- Compatible with [skills](https://github.com/vercel-labs/skills) for easy installation across coding agents
+- Structure inspired by the [Vercel React Best Practices](https://github.com/vercel-labs/agent-skills) skill
+- Installation via [skills](https://github.com/vercel-labs/skills)
 
-## Compatible Agents
+## License
 
-These NestJS skills work with:
-
-- [Claude Code](https://claude.ai/code) - Anthropic's official CLI
-- [AdaL](https://sylph.ai/adal) - Self-evolving AI coding agent with MCP support
-
+[MIT](LICENSE)
