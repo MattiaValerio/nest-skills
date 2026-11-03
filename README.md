@@ -1,6 +1,27 @@
-# NestJS Best Practices
+# NestJS Best Practices Skills
 
-A set of NestJS best-practice rules for coding agents, installable alongside other skill sets such as [mattpocock/skills](https://github.com/mattpocock/skills).
+[![skills.sh](https://skills.sh/b/mattiavalerio/nest-skills)](https://skills.sh/mattiavalerio/nest-skills)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Rules](https://img.shields.io/badge/rules-40-green.svg)](skills/nestjs-best-practices/rules)
+
+**40 NestJS best-practice rules for AI coding agents** (Claude Code, Codex, Cursor, OpenCode and more). Each rule has an incorrect and a correct code example, so agents write idiomatic, secure, testable NestJS instead of guessing.
+
+Installable alongside other skill sets such as [mattpocock/skills](https://github.com/mattpocock/skills).
+
+## What it covers
+
+| Category | Impact | Examples |
+|----------|--------|----------|
+| Architecture | CRITICAL | feature modules, circular dependencies, repository pattern, events |
+| Dependency Injection | CRITICAL | constructor injection, provider scopes, injection tokens, SOLID |
+| Error Handling | HIGH | exception filters, HTTP exceptions, async errors |
+| Security | HIGH | JWT auth, guards, input validation, rate limiting, XSS |
+| Performance | HIGH | caching, query optimization, lazy loading, async hooks |
+| Testing | MEDIUM-HIGH | Testing module, Supertest e2e, mocking external services |
+| Database & ORM | MEDIUM-HIGH | transactions, N+1 queries, migrations |
+| API Design | MEDIUM | DTOs and serialization, interceptors, pipes, versioning |
+| Microservices | MEDIUM | message/event patterns, health checks, queues |
+| DevOps | LOW-MEDIUM | ConfigModule, structured logging, graceful shutdown |
 
 ## Installation
 
