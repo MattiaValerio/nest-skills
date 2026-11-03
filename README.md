@@ -1,8 +1,18 @@
-# NestJS Best Practices Skills
+<p align="center">
+  <img src="assets/nestjs-logo.svg" alt="NestJS" height="96">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/skills-logo.svg" alt="skills" height="96">
+</p>
+
+<h1 align="center">NestJS Best Practices Skills</h1>
+
+<p align="center">
 
 [![skills.sh](https://skills.sh/b/mattiavalerio/nest-skills)](https://skills.sh/mattiavalerio/nest-skills)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Rules](https://img.shields.io/badge/rules-40-green.svg)](skills/nestjs-best-practices/rules)
+
+</p>
 
 **40 NestJS best-practice rules for AI coding agents** (Claude Code, Codex, Cursor, OpenCode and more). Each rule has an incorrect and a correct code example, so agents write idiomatic, secure, testable NestJS instead of guessing.
 
@@ -162,4 +172,4 @@ This compiles the rules into the root `AGENTS.md`.
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). The NestJS logo is a trademark of its owners and is used here only to identify the framework; this project is not affiliated with or endorsed by NestJS.
